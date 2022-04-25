@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <my-input @buildGraph="buildGraph" v-show="inputField"></my-input>
+    <graph-canvas v-show="inputField==false" :message='message'></graph-canvas>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MyInput from "@/components/MyInput.vue"
+import GraphCanvas from "@/components/GraphCanvas.vue"
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    MyInput, GraphCanvas
+  },
+   props: ['dotes'],
+  name: 'App',
+  data() {
+    return {
+      message: '',
+      inputField: true
+    }
+  },
+  methods: {
+    buildGraph(data) {
+      this.message = data
+      this.inputField = false
+      console.log(data)
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
