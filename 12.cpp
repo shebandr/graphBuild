@@ -1,7 +1,7 @@
+#include <ctime>
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <iostream>
-#include <ctime>
 
 using namespace std;
 float M = 0, C = 0;
@@ -27,8 +27,6 @@ void split(Q *, Q *&, Q *&, int);
 void merge_series(Q *&, int, Q *&, int, Q *&, Q *&);
 void merge_sort(Q *&, Q *&, int);
 
-
-
 void split(Q *S, Q *&a, Q *&b, int n) {
   Q *k = new Q;
   Q *p = new Q;
@@ -37,45 +35,48 @@ void split(Q *S, Q *&a, Q *&b, int n) {
   n = 1;
   k = a;
   p = b;
-  C++;
+
   while (p != NULL) {
     n++;
     k->next = p->next;
     k = p;
     p = p->next;
-    C++;
-    M += 1;
+    M += 3;
   }
-
 }
 
 void merge_series(Q *&a, int q, Q *&b, int r, Q *&h1, Q *&t1) {
+
+  C++;
   while (q != 0 && r != 0) {
+    C++;
     if (a->data <= b->data) {
       push_to_queue(h1, t1, a->data);
       q--;
       a = a->next;
-      M+=1.5;
+      M += 1.5;
     } else {
       push_to_queue(h1, t1, b->data);
       r--;
       b = b->next;
-      M+=1.5;
+      M += 1.5;
     }
-    C++;
   }
 
-  while (q > 0) {	
+  while (q > 0) {
     push_to_queue(h1, t1, a->data);
-    M+=1.5;
+    M += 1.5;
     a = a->next;
     q--;
+ 
   }
+
   while (r > 0) {
+
     push_to_queue(h1, t1, b->data);
     b = b->next;
     r--;
-    M+=1.5;
+    M += 1.5;
   }
 }
 
@@ -89,14 +90,13 @@ void merge_sort(Q *&head, Q *&tail, int n) {
 
   Ques *c = new Ques[2];
   int p = 1;
-  C++;
+
   while (p < n) {
     c[0].head = c[0].tail = c[1].head = c[1].tail = NULL;
     int i = 0, m = n;
-    C++;
+
     while (m > 0) {
-      M+=1.5;
-      C++;
+
       if (m >= p)
         q = p;
       else
@@ -110,7 +110,7 @@ void merge_sort(Q *&head, Q *&tail, int n) {
       merge_series(a, q, b, r, c[i].head, c[i].tail);
       i = 1 - i;
     }
-    M += 2;
+
     a = c[0].head;
     b = c[1].head;
     p *= 2;
@@ -160,10 +160,10 @@ void fill_rand(Q *&head, Q *&tail, int n) {
 
 void print(Q *S) {
   if (S != NULL) {
-//    printf("%d ", S->data);
-//    print(S->next);
+    //    printf("%d ", S->data);
+    //    print(S->next);
   } else {
-//    printf("\n");
+    //    printf("\n");
   }
 }
 
@@ -182,25 +182,25 @@ int main() {
   tail = NULL;
   printf("\n n      Inc |  Dec | Rand\n");
   int n = 10;
-//  fill_decrement(head, tail, n);
-//merge_sort(head, tail, n);
-//clean(head);
-for (int n = 100; n <= 500; n += 100) {
-    cout << n ;
+  //  fill_decrement(head, tail, n);
+  // merge_sort(head, tail, n);
+  // clean(head);
+  for (int n = 100; n <= 500; n += 100) {
+    cout << n;
 
     fill_increment(head, tail, n);
     merge_sort(head, tail, n);
-    cout  << " |   "  << M + C ;
+    cout << " |   " << M + C;
     clean(head);
 
     fill_decrement(head, tail, n);
     merge_sort(head, tail, n);
-    cout   <<  " | " << M + C;
+    cout << " | " << M + C;
     clean(head);
 
     fill_rand(head, tail, n);
     merge_sort(head, tail, n);
-    cout  <<   " | " <<  M + C << endl;
+    cout << " | " << M + C << endl;
     clean(head);
   }
 

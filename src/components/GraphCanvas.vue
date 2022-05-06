@@ -28,9 +28,11 @@ export default {
         arraysSplitted[w] = arrays[w].split(" ")
 
       }
-      for(w=10;w<=1000;w+=10){
-        arraysSplitted[3][(w/10)-1]=w*Math.log2(w)
+      for (var n = 10; n <= 1000; n += 10) {
+        arraysSplitted[3][(n / 10)] = n * Math.log2(n)
+        
       }
+      arraysSplitted[3][0] = "nlog2n"
       console.log(arrays[0].split(" "))
       var canvas = document.getElementById("test");
       var ctx = canvas.getContext('2d');
@@ -61,7 +63,7 @@ export default {
       var z = 0
       for (q = 850; q >= 100; q -= 50) {
         ctx.fillText(z, 15, q)
-        z += 2000
+        z += 2500
       }
       z = 0
       for (q = 50; q <= 1150; q += 100) {
@@ -73,15 +75,15 @@ export default {
 
       ctx.stroke(); // обводим фигуры
       ctx.beginPath()
-      ctx.strokeStyle="gray"
-      for(q = 900;q>50;q-=50){
+      ctx.strokeStyle = "gray"
+      for (q = 900; q > 50; q -= 50) {
         ctx.moveTo(50, q)
         ctx.lineTo(1100, q)
       }
       ctx.stroke();
       ctx.beginPath()
-      ctx.strokeStyle="gray"
-      for(q = 50;q<=1100;q+=100){
+      ctx.strokeStyle = "gray"
+      for (q = 50; q <= 1100; q += 100) {
         ctx.moveTo(q, 850)
         ctx.lineTo(q, 50)
       }
@@ -90,28 +92,28 @@ export default {
       ctx.beginPath()
       ctx.strokeStyle = "black"
       ctx.moveTo(50, 850)
-      z=850
-      w=1
-       delitel = 100
+      z = 850
+      w = 1
+      delitel = 100
       for (q = 50; q <= 1150; q += 10) {
-        ctx.lineTo(q + 10, z - (arraysSplitted[3][w] / delitel))
-        z -= arraysSplitted[0][w] / 3000
+        ctx.lineTo(q + 10, z - (arraysSplitted[3][w] / 50))
+
         w++
       }
-      ctx.strokeText( "nlog2n - черный", 800, 50)
+      ctx.strokeText(arraysSplitted[3][0]+"- черный", 800, 50)
       ctx.stroke(); // обводим фигуры
       ctx.beginPath()
       ctx.strokeStyle = "red"
       ctx.moveTo(50, 850)
-      z=850
-      w=1
-      var delitel = 100
+      z = 850
+      w = 1
+      var delitel = 50
       for (q = 50; q <= 1150; q += 10) {
         ctx.lineTo(q + 10, z - (arraysSplitted[0][w] / delitel))
-        z -= arraysSplitted[0][w] / 3000
+
         w++
       }
-      ctx.strokeText( "Mergesort - красный", 200, 50)
+      ctx.strokeText(arraysSplitted[0][0] + " - красный", 200, 50)
       ctx.stroke(); // обводим фигуры
       ctx.beginPath()
       z = 850
@@ -119,11 +121,11 @@ export default {
       ctx.strokeStyle = "blue"
       ctx.moveTo(50, 850)
       for (q = 50; q <= 1150; q += 10) {
-        ctx.lineTo(q + 10, z - (arraysSplitted[0][w] / delitel))
-        z -= arraysSplitted[1][w] / 3000
+        ctx.lineTo(q + 10, z - (arraysSplitted[1][w] / delitel))
+
         w++
       }
-      ctx.strokeText( "Quicksort - синий", 400, 50)
+      ctx.strokeText(arraysSplitted[1][0] + " - синий", 400, 50)
       ctx.stroke(); // обводим фигуры
       ctx.beginPath()
       z = 850
@@ -132,13 +134,16 @@ export default {
       ctx.moveTo(50, 850)
       for (q = 50; q <= 1150; q += 10) {
 
-        ctx.lineTo(q + 10, z - (arraysSplitted[0][w] / delitel))
-        z -= arraysSplitted[2][w] / 3000
+        ctx.lineTo(q + 10, z - (arraysSplitted[2][w] / delitel))
+
         w++
       }
-      ctx.strokeText( "Heapsort - красный", 600, 50)
+      ctx.strokeText(arraysSplitted[2][0] + " - зеленый", 600, 50)
       ctx.stroke(); // обводим фигуры
-
+      console.log(arraysSplitted[0][50])
+      console.log(arraysSplitted[1][50])
+      console.log(arraysSplitted[2][50])
+      console.log(arraysSplitted[3][50])
     }
 
   }

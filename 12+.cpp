@@ -120,19 +120,21 @@ void split(Q *S, Q *&a, Q *&b, int n) {
   n = 1;
   k = a;
   p = b;
-  C++;
+
   while (p != NULL) {
     n++;
     k->next = p->next;
     k = p;
     p = p->next;
-    C++;
-    M += 1;
+    M += 3;
   }
 }
 
 void merge_series(Q *&a, int q, Q *&b, int r, Q *&h1, Q *&t1) {
+
+  C++;
   while (q != 0 && r != 0) {
+    C++;
     if (a->data <= b->data) {
       push_to_queue(h1, t1, a->data);
       q--;
@@ -144,7 +146,6 @@ void merge_series(Q *&a, int q, Q *&b, int r, Q *&h1, Q *&t1) {
       b = b->next;
       M += 1.5;
     }
-    C++;
   }
 
   while (q > 0) {
@@ -152,8 +153,11 @@ void merge_series(Q *&a, int q, Q *&b, int r, Q *&h1, Q *&t1) {
     M += 1.5;
     a = a->next;
     q--;
+ 
   }
+
   while (r > 0) {
+
     push_to_queue(h1, t1, b->data);
     b = b->next;
     r--;
@@ -171,14 +175,13 @@ void merge_sort(Q *&head, Q *&tail, int n) {
 
   Ques *c = new Ques[2];
   int p = 1;
-  C++;
+
   while (p < n) {
     c[0].head = c[0].tail = c[1].head = c[1].tail = NULL;
     int i = 0, m = n;
-    C++;
+
     while (m > 0) {
-      M += 1.5;
-      C++;
+
       if (m >= p)
         q = p;
       else
@@ -192,7 +195,7 @@ void merge_sort(Q *&head, Q *&tail, int n) {
       merge_series(a, q, b, r, c[i].head, c[i].tail);
       i = 1 - i;
     }
-    M += 2;
+
     a = c[0].head;
     b = c[1].head;
     p *= 2;
@@ -266,6 +269,7 @@ int main() {
   ofstream out;
   out.open("graph.txt");
   if (out.is_open())
+    out << "MergeSort";
     for (int n = 10; n <= 1000; n += 10) {
 
       fill_rand(head, tail, n);
@@ -274,7 +278,7 @@ int main() {
       clean(head);
     }
   out << endl;
-
+  out << "QiockSort";
   for (int n = 10; n <= 1000; n += 10) {
     int Arr[n];
     FillRand(Arr, n);
@@ -282,12 +286,12 @@ int main() {
     out << " " << quickSort(Arr, 0, n - 1);
   }
   out << endl;
-
+  out << "HeapSort";
   for (int n = 10; n <= 1000; n += 10) {
     int Arr[n];
     FillRand(Arr, n);
 
-    out  << HeapSort(Arr, n) << " ";
+    out << " " << HeapSort(Arr, n) ;
   }
   out << endl;
   cout << "file complete" << endl;
