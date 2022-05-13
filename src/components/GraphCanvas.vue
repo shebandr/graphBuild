@@ -36,7 +36,6 @@ export default {
       console.log(arrays[0].split(" "))
       var canvas = document.getElementById("test");
       var ctx = canvas.getContext('2d');
-      /* Рисует контур прямоугольника на всю ширину и высоту canvas */
       ctx.beginPath();
       ctx.strokeRect(0, 0, canvas.width, canvas.height);
       ctx.strokeRect(0, 0, canvas.width, canvas.height);
@@ -73,7 +72,7 @@ export default {
       z = 850
       w = 1
 
-      ctx.stroke(); // обводим фигуры
+      ctx.stroke(); 
       ctx.beginPath()
       ctx.strokeStyle = "gray"
       for (q = 900; q > 50; q -= 50) {
@@ -101,7 +100,7 @@ export default {
         w++
       }
       ctx.strokeText(arraysSplitted[3][0]+"- черный", 800, 50)
-      ctx.stroke(); // обводим фигуры
+      ctx.stroke(); 
       ctx.beginPath()
       ctx.strokeStyle = "red"
       ctx.moveTo(50, 850)
@@ -114,7 +113,7 @@ export default {
         w++
       }
       ctx.strokeText(arraysSplitted[0][0] + " - красный", 200, 50)
-      ctx.stroke(); // обводим фигуры
+      ctx.stroke(); 
       ctx.beginPath()
       z = 850
       w = 1
@@ -126,7 +125,7 @@ export default {
         w++
       }
       ctx.strokeText(arraysSplitted[1][0] + " - синий", 400, 50)
-      ctx.stroke(); // обводим фигуры
+      ctx.stroke(); 
       ctx.beginPath()
       z = 850
       w = 1
@@ -139,7 +138,7 @@ export default {
         w++
       }
       ctx.strokeText(arraysSplitted[2][0] + " - зеленый", 600, 50)
-      ctx.stroke(); // обводим фигуры
+      ctx.stroke();
       console.log(arraysSplitted[0][50])
       console.log(arraysSplitted[1][50])
       console.log(arraysSplitted[2][50])
